@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#121e2f">
+  <meta name="description" content="Finanzas personales en MXN: ingresos, gastos, tarjetas y datos bancarios cifrados.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Finanzas Personales · Laboratorio Beta</title>
+  <style>
+    .beta-bar{position:relative;z-index:1200;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:10px 15px;background:#fff0cc;color:#503c12;border-bottom:1px solid #e6d4a2;font-size:12px;line-height:1.4;text-align:center}
+    .beta-bar strong{font-size:12px}
+    .beta-bar a{font-weight:800;color:#315f69}
+    @media(max-width:600px){.beta-bar{gap:5px 10px;padding:9px 10px}}
+
+    :root {--ink:#172536;--muted:#64748b;--line:#e5eaf0;--bg:#f5f7fa;--surface:#fff;--navy:#142237;--teal:#0f917c;--teal-soft:#e9f9f4;--red:#c34c4f;--red-soft:#fff0f0;--gold:#b48232;--shadow:0 14px 42px rgba(19,37,57,.045);--radius:18px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Arial,sans-serif;font-synthesis:none}
+    *{box-sizing:border-box} html{min-height:100%} body{margin:0;background:var(--bg);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.56;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid #67b4eb;outline-offset:3px}a{color:var(--teal)}[hidden]{display:none!important}.muted{color:var(--muted)}.small{font-size:12px}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:10px;font-weight:800;color:#8795a7}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:10px 15px;border:1px solid transparent;border-radius:12px;font-weight:750;font-size:13px;transition:.18s ease;white-space:nowrap}.button:hover:not(:disabled){transform:translateY(-1px)}.button.primary{background:var(--teal);color:#fff}.button.dark{background:var(--navy);color:#fff}.button.light{background:#f1f5f8;color:var(--ink);border-color:#e7ebf1}.button.danger{background:var(--red-soft);color:var(--red)}.button.ghost{background:transparent;color:inherit}.button.mini{font-size:12px;min-height:34px;padding:6px 10px;border-radius:9px}.button.full{width:100%}.button.inline{min-height:unset;padding:2px 4px}.button.icon-only{width:40px;padding:8px}
+    .auth-wrap{min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr) minmax(370px,.86fr)}.auth-art{background:radial-gradient(circle at 80% 15%,#1a4d56 0,transparent 40%),linear-gradient(135deg,#132238,#1c3541);color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(34px,6vw,78px)}.mark{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:-.025em}.mark-symbol{height:37px;width:37px;display:grid;place-items:center;background:var(--teal);color:#fff;border-radius:12px;font-size:22px}.auth-art h1{font-size:clamp(36px,5vw,64px);line-height:1.08;letter-spacing:-.055em;margin:0 0 16px;max-width:650px}.auth-art p{max-width:490px;font-size:16px;line-height:1.7;color:#bccfd4}.auth-art .kicker{color:#81d3c2;font-weight:750;font-size:12px;letter-spacing:.11em}.auth-panel{display:flex;align-items:center;justify-content:center;padding:32px}.auth-card{width:min(100%,430px)}.auth-card h2{font-size:29px;letter-spacing:-.04em;margin:12px 0 8px}.auth-sub{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:27px}.auth-tabs{display:flex;background:#e9edf2;border-radius:13px;padding:4px;gap:4px;margin-bottom:24px}.auth-tabs button{flex:1;border:0;background:transparent;padding:11px;border-radius:10px;font-weight:750;color:#5d6a7b}.auth-tabs button[aria-selected="true"]{background:#fff;color:var(--ink);box-shadow:0 2px 9px #14223712}
+    .field{display:flex;flex-direction:column;gap:7px;min-width:0}.field label{font-size:12px;font-weight:800;color:#42546b}.field input,.field select,.field textarea{width:100%;border:1px solid #dce3eb;border-radius:11px;background:#fff;color:var(--ink);min-height:46px;padding:11px 12px;outline:none;transition:border-color .15s}.field textarea{resize:vertical;min-height:82px}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px #0f917c19}.field input[type=month],.field input[type=date]{min-height:44px}.field .help{color:var(--muted);font-size:11px;line-height:1.5}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.form-grid .wide{grid-column:1/-1}.auth-form{display:grid;gap:15px}.foot-link{text-align:center;font-size:13px;margin:18px 0}.status{padding:12px;border-radius:12px;font-size:13px;background:#f0f5fa;color:#4d6075;line-height:1.55}.status.error{background:var(--red-soft);color:#a83b3d}.status.success{background:var(--teal-soft);color:#137e6c}
+    .app{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}.sidebar{background:var(--navy);color:#fff;padding:29px 17px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:35px}.sidebar .mark{padding:0 13px;font-size:17px}.side-section{font-size:10px;letter-spacing:.15em;color:#8ea1b6;margin:0 12px 11px;font-weight:800}.navigation{display:grid;gap:7px}.navigation button{border:0;color:#b4c4d4;background:transparent;text-align:left;display:flex;align-items:center;gap:12px;padding:14px 15px;border-radius:11px;font-size:13px;font-weight:700}.navigation button[aria-current=page]{background:#264153;color:#fff}.nav-icon{font-size:18px;width:24px;text-align:center}.sidebar-foot{margin-top:auto;padding:15px 11px;border-top:1px solid #324458}.sidebar-foot strong{display:block;font-size:12px;max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sidebar-foot span{font-size:10px;color:#a8b9ca}.sidebar-foot .button{color:#d5dce6;margin-top:12px}.workspace{padding:30px clamp(20px,4vw,65px) 92px;max-width:1450px;width:100%;margin-inline:auto;min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:29px}.topbar h1{margin:5px 0 0;font-size:29px;letter-spacing:-.05em}.top-actions{display:flex;align-items:center;gap:10px}.top-actions input{border:1px solid var(--line);border-radius:11px;padding:10px;background:#fff;min-height:42px;color:#293951;max-width:160px}.offline{background:#fff3dd;padding:11px 18px;color:#79591d;border-radius:12px;font-size:12px;margin-bottom:17px;font-weight:700}
+    .view{display:none}.view.active{display:block}.hero{background:radial-gradient(circle at 90% 15%,#2b5660 0,transparent 37%),linear-gradient(110deg,#1a3341,#132539);padding:27px 30px;display:grid;grid-template-columns:1fr auto;gap:15px;align-items:end;color:#fff;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:20px}.hero .eyebrow{color:#a6d1cd}.hero strong{font-size:clamp(28px,4vw,43px);display:block;font-weight:830;margin:9px 0 8px;letter-spacing:-.055em;font-variant-numeric:tabular-nums}.hero p{font-size:12px;color:#adc3cc;margin:0}.hero .button{background:#f3fbfa;color:#0d594c}
+    .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-bottom:21px}.stat,.panel{background:var(--surface);border:1px solid #e8edf2;box-shadow:var(--shadow);border-radius:var(--radius)}.stat{padding:21px 22px}.stat-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px;font-weight:750}.stat-icon{display:grid;place-items:center;width:35px;height:35px;border-radius:11px;font-size:18px}.stat strong{display:block;font-size:clamp(20px,2.5vw,29px);letter-spacing:-.04em;margin-top:14px;font-variant-numeric:tabular-nums}.stat-note{display:block;color:var(--muted);font-size:11px;margin-top:7px}.tone-green{color:var(--teal)}.tone-red{color:var(--red)}.panel{padding:22px;margin-bottom:18px;min-width:0}.panel-head{display:flex;align-items:start;justify-content:space-between;gap:14px;margin-bottom:18px}.panel-head h2{font-size:17px;margin:2px 0;letter-spacing:-.02em}.panel-head p{font-size:12px;color:var(--muted);margin:6px 0 0;line-height:1.5}.dashboard-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:18px}.chart-line{display:grid;grid-template-columns:minmax(92px,1fr) minmax(95px,2fr) auto;align-items:center;gap:14px;margin-bottom:15px;font-size:12px}.chart-line .cat{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#4a5970}.chart-track{height:9px;border-radius:99px;background:#e9eff3;overflow:hidden}.chart-fill{height:100%;background:var(--teal);border-radius:99px;min-width:1px}.chart-val{font-variant-numeric:tabular-nums;font-weight:700;font-size:11px}.empty{border:1px dashed #dce5e9;border-radius:14px;padding:26px 14px;text-align:center;color:var(--muted);font-size:13px;line-height:1.7}.empty strong{display:block;color:var(--ink);margin-bottom:4px}.tx-list{display:grid;gap:8px}.tx-row{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 3px;border-bottom:1px solid #edf1f4}.tx-row:last-child{border-bottom:0}.tx-symbol{height:39px;width:39px;border-radius:13px;background:var(--red-soft);color:var(--red);display:grid;place-items:center;flex:none;font-size:17px;font-weight:800}.tx-symbol.income{background:var(--teal-soft);color:var(--teal)}.tx-info{min-width:0;flex:1}.tx-info strong{display:block;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tx-info small{display:block;color:var(--muted);margin-top:4px;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tx-amount{font-size:13px;font-weight:830;white-space:nowrap;font-variant-numeric:tabular-nums}.tx-amount.expense{color:var(--red)}.tx-amount.income{color:var(--teal)}.tx-buttons{display:flex;gap:5px;margin-left:6px}
+    .filters{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px}.filters input,.filters select{border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px;min-height:42px;color:var(--ink);font-size:12px}.filters input[type=search]{flex:1;min-width:170px}.filter-count{margin-left:auto;font-size:11px;color:var(--muted)}.cards-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.wallet-card{border:1px solid #e5ebf1;background:#fff;border-radius:18px;padding:20px;min-width:0}.wallet-card .card-top{display:flex;justify-content:space-between;align-items:start;gap:9px}.wallet-card h3{font-size:15px;margin:5px 0 6px}.wallet-card .badge{background:#eff3f7;border-radius:99px;padding:5px 9px;font-size:10px;font-weight:750;color:#526176;white-space:nowrap}.wallet-card .number{font-size:12px;color:#78889a;letter-spacing:.1em;margin-top:8px}.wallet-card .balance{font-size:24px;font-weight:850;margin:17px 0 6px;letter-spacing:-.05em;font-variant-numeric:tabular-nums}.wallet-card .balance-label{font-size:11px;color:var(--muted)}.wallet-card .card-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:17px;padding-top:14px;border-top:1px solid #eef2f5}.wallet-card .warning{font-size:11px;color:var(--gold);line-height:1.5;margin-top:11px}.wallet-card.inactive{opacity:.7}
+    .insight{border:1px solid #e8edf2;border-radius:14px;padding:17px;background:#fff}.insight strong{font-size:23px;display:block;margin:9px 0 7px;letter-spacing:-.04em}.insight span{font-size:12px;color:var(--muted)}.insight-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-bottom:20px}.mobile-nav{display:none}.fab{display:none}.toast{position:fixed;right:18px;bottom:22px;max-width:min(450px,calc(100vw - 36px));border-radius:14px;background:#172b3b;color:#fff;padding:13px 17px;box-shadow:0 16px 40px #0003;z-index:1000;font-size:13px;line-height:1.45}.toast.error{background:#973c43}
+    dialog{border:1px solid #e4ebf0;box-shadow:0 24px 85px #101c2d42;border-radius:19px;padding:0;width:min(96vw,500px);max-height:min(90dvh,810px);overflow:auto;color:var(--ink);background:#fff}dialog::backdrop{background:#0a1829ac;backdrop-filter:blur(3px)}dialog .dialog-pad{padding:24px}dialog h2{margin:0 0 5px;font-size:22px;letter-spacing:-.04em}dialog .modal-sub{font-size:12px;color:var(--muted);line-height:1.55;margin:0 0 20px}.dialog-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:20px}.dialog-actions .button{flex:1}dialog .close-x{float:right;border:0;background:#f0f3f7;border-radius:10px;width:36px;height:36px;color:#4c6072;font-size:20px}.vault-sensitive{background:#f4f7fa;border:1px solid #dfe7ec;border-radius:12px;padding:16px;margin-top:15px;overflow-wrap:anywhere}.vault-sensitive .secret-value{font-weight:800;font-size:15px;letter-spacing:.035em;margin:4px 0 13px;user-select:all}.vault-sensitive .secret-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.vault-sensitive .secret-value:last-child{margin-bottom:0}.security-note{font-size:11px;color:#806323;background:#fff8ea;border:1px solid #f6e4bf;border-radius:12px;padding:11px;line-height:1.6;margin:14px 0}.divider{height:1px;background:var(--line);margin:20px 0}.loading{min-height:180px;display:grid;place-items:center;color:var(--muted);font-size:13px}
+    @media(max-width:1100px){.dashboard-grid{grid-template-columns:1fr}.workspace{padding:25px 24px 100px}.cards-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:760px){.auth-wrap{grid-template-columns:1fr}.auth-art{padding:24px 24px 20px;min-height:180px}.auth-art h1{font-size:26px;margin:15px 0 0}.auth-art p{display:none}.auth-art .kicker{display:none}.auth-panel{padding:24px 22px 70px;align-items:start}.auth-card h2{font-size:25px}.sidebar{display:none}.app{display:block}.workspace{padding:22px 16px calc(115px + env(safe-area-inset-bottom));}.topbar{align-items:start;margin-bottom:23px}.topbar h1{font-size:24px}.top-actions{flex-wrap:wrap;justify-content:flex-end}.top-actions .new-desktop{display:none}.top-actions input{width:132px;min-width:0}.stats{grid-template-columns:1fr 1fr;gap:10px}.stat{padding:17px 15px}.stat strong{font-size:21px}.stat:nth-child(3){grid-column:1/-1}.stat-top{font-size:11px}.hero{padding:22px;grid-template-columns:1fr}.hero .button{justify-self:start}.dashboard-grid,.cards-grid,.insight-grid{grid-template-columns:1fr}.panel{padding:19px}.chart-line{grid-template-columns:minmax(80px,1fr) minmax(50px,2fr) auto;gap:8px}.mobile-nav{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;bottom:0;left:0;right:0;z-index:50;min-height:72px;padding:9px 8px calc(9px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:0 -12px 33px #14223710}.mobile-nav button{border:0;background:transparent;color:#78889b;font-size:10px;font-weight:700;padding:5px 0}.mobile-nav .nav-icon{display:block;font-size:21px;margin:0 auto 3px}.mobile-nav button[aria-current=page]{color:var(--teal)}.fab{display:grid;place-items:center;position:fixed;bottom:calc(83px + env(safe-area-inset-bottom));right:16px;width:56px;height:56px;border-radius:18px;background:var(--teal);color:#fff;border:0;box-shadow:0 10px 24px #0f917c50;font-size:30px;font-weight:300;z-index:45}.filters{gap:8px}.filters input[type=search]{flex-basis:100%}.tx-buttons .button{padding:5px 7px}.toast{bottom:calc(81px + env(safe-area-inset-bottom))}.filter-count{flex-basis:100%;margin-left:0}dialog .dialog-pad{padding:19px}}
+    @media(max-width:360px){.form-grid{grid-template-columns:1fr}.form-grid .wide{grid-column:auto}.topbar{display:block}.top-actions{justify-content:flex-start;margin-top:14px}.stat strong{font-size:19px}.wallet-card .card-actions .button{flex:1}}
+    @media(prefers-reduced-motion:reduce){.button{transition:none}.button:hover:not(:disabled){transform:none}}
+  </style>
+</head>
+<body>
+<div class="beta-bar" role="status" aria-live="polite"><strong>🧪 LABORATORIO BETA · SOLO LECTURA</strong><span>Tu versión principal no cambia. Esta versión consulta el mismo Supabase, pero bloquea cambios.</span><a href="../">Ir a versión principal</a></div>
+  <noscript><div class="status error" style="margin:20px">Es necesario activar JavaScript para usar esta aplicación.</div></noscript>
+  <section id="authScreen" class="auth-wrap">
+    <aside class="auth-art">
+      <div class="mark"><span class="mark-symbol">◈</span> Finanzas Personales</div>
+      <div><div class="kicker">CONTROL FINANCIERO · MXN</div><h1>El dinero, bajo tu control.</h1><p>Controla ingresos y gastos, organiza tus tarjetas y protege los datos de depósito con cifrado en tu propio dispositivo.</p></div>
+      <div class="small" style="color:#a2bcc6">Una aplicación privada respaldada por Supabase</div>
+    </aside>
+    <main class="auth-panel"><div class="auth-card">
+      <div id="authStandard">
+        <span class="eyebrow">BIENVENIDO</span><h2 id="authTitle">Iniciar sesión</h2><p class="auth-sub">Accede a tus movimientos y tarjetas con tu correo electrónico.</p>
+        <div class="auth-tabs" role="tablist" aria-label="Acceso"><button type="button" id="tabLogin" role="tab" aria-selected="true">Ingresar</button><button type="button" id="tabRegister" role="tab" aria-selected="false">Crear cuenta</button></div>
+        <form id="authForm" class="auth-form" novalidate>
+          <div class="field"><label for="authEmail">Correo electrónico</label><input id="authEmail" type="email" autocomplete="email" required placeholder="nombre@ejemplo.com"></div>
+          <div class="field"><label for="authPassword">Contraseña</label><input id="authPassword" type="password" autocomplete="current-password" minlength="10" required placeholder="Mínimo 10 caracteres"></div>
+          <button class="button primary full" id="authSubmit" type="submit">Iniciar sesión</button>
+        </form>
+        <p class="foot-link"><button class="button ghost inline" type="button" id="forgotButton">¿Olvidaste tu contraseña?</button></p>
+      </div>
+      <div id="requestReset" hidden>
+        <h2>Recuperar acceso</h2><p class="auth-sub">Te enviaremos un enlace al correo asociado a tu cuenta.</p>
+        <form id="resetRequestForm" class="auth-form"><div class="field"><label for="resetEmail">Correo electrónico</label><input id="resetEmail" type="email" autocomplete="email" required></div><button class="button primary full" type="submit">Enviar enlace</button></form>
+        <p class="foot-link"><button class="button ghost inline" id="backLogin" type="button">Volver al inicio de sesión</button></p>
+      </div>
+      <div id="completeReset" hidden>
+        <h2>Crear nueva contraseña</h2><p class="auth-sub">Este formulario solo funciona tras abrir un enlace válido de recuperación.</p>
+        <form id="resetCompleteForm" class="auth-form"><div class="field"><label for="newPassword">Nueva contraseña</label><input id="newPassword" type="password" autocomplete="new-password" minlength="10" required></div><div class="field"><label for="newPasswordAgain">Confirma tu contraseña</label><input id="newPasswordAgain" type="password" autocomplete="new-password" minlength="10" required></div><button class="button primary full" type="submit">Actualizar contraseña</button></form>
+      </div>
+      <p class="status" id="authMessage" hidden role="status" aria-live="polite"></p>
+      <p class="small muted" style="margin-top:22px;line-height:1.65">Tus datos solo se mostrarán con una sesión válida. La contraseña maestra de datos bancarios es independiente de esta cuenta.</p>
+    </div></main>
+  </section>
+  <div id="appShell" class="app" hidden>
+    <aside class="sidebar">
+      <div class="mark"><span class="mark-symbol">◈</span> Finanzas<br>Personales</div>
+      <div><p class="side-section">MENU PRINCIPAL</p><nav class="navigation" aria-label="Principal">
+        <button type="button" data-view="dashboard" aria-current="page"><span class="nav-icon">◫</span> Resumen</button>
+        <button type="button" data-view="transactions"><span class="nav-icon">⇄</span> Movimientos</button>
+        <button type="button" data-view="cards"><span class="nav-icon">▣</span> Mis tarjetas</button>
+        <button type="button" data-view="insights"><span class="nav-icon">▥</span> Estadísticas</button>
+      </nav></div>
+      <div class="sidebar-foot"><span>CUENTA ACTIVA</span><strong id="accountEmail"></strong><button id="logoutButton" class="button ghost mini" type="button">↪ Cerrar sesión</button></div>
+    </aside>
+    <main class="workspace">
+      <div id="offlineBanner" class="offline" hidden>Sin conexión. Los cambios NO se guardarán hasta recuperar internet.</div>
+      <div id="dataBanner" class="offline" hidden role="status"><span id="dataBannerText"></span> <button id="retryLoad" class="button mini light" type="button" hidden>Reintentar</button></div>
+      <header class="topbar"><div><span class="eyebrow" id="sectionKicker">PANORAMA GENERAL</span><h1 id="sectionTitle">Tu resumen</h1></div>
+        <div class="top-actions"><label for="monthFilter" class="sr-only">Mes de consulta</label><input id="monthFilter" type="month" aria-label="Mes seleccionado"><button type="button" id="incomeTopButton" class="button light new-desktop">+ Ingreso</button><button type="button" id="expenseTopButton" class="button primary new-desktop">+ Gasto</button></div>
+      </header>
+      <section id="view-dashboard" class="view active" aria-label="Resumen">
+        <div class="hero"><div><span class="eyebrow">BALANCE NETO DEL MES</span><strong id="netHero">$0.00</strong><p id="monthHeroLabel">Ingresos menos gastos registrados</p></div><button type="button" id="heroQuick" class="button">＋ Nuevo movimiento</button></div>
+        <div class="stats"><div class="stat"><div class="stat-top">Ingresos <span class="stat-icon" style="background:var(--teal-soft);color:var(--teal)">↙</span></div><strong id="statIncome">$0.00</strong><span class="stat-note">Total recibido este mes</span></div><div class="stat"><div class="stat-top">Egresos <span class="stat-icon" style="background:var(--red-soft);color:var(--red)">↗</span></div><strong id="statExpense">$0.00</strong><span class="stat-note">Total gastado este mes</span></div><div class="stat"><div class="stat-top">Movimientos <span class="stat-icon" style="background:#f0f4fc;color:#557ab1">≡</span></div><strong id="statCount">0</strong><span class="stat-note">Registrados en el período</span></div></div>
+        <div class="dashboard-grid"><div class="panel"><div class="panel-head"><div><h2>¿En qué gastas?</h2><p>Distribución mensual de tus egresos</p></div></div><div id="categoryChart"></div></div><div class="panel"><div class="panel-head"><div><h2>Actividad reciente</h2><p>Movimientos del mes seleccionado</p></div><button type="button" data-view="transactions" class="button light mini">Ver todos</button></div><div id="recentTransactions" class="tx-list"></div></div></div>
+        <div class="panel"><div class="panel-head"><div><h2>Captura rápida desde iPhone</h2><p>Accesos directos para Atajos o Safari, reutilizando tu sesión web.</p></div></div><div class="filters"><button id="copyExpenseShortcut" class="button light" type="button">Copiar enlace de gasto</button><button id="copyIncomeShortcut" class="button light" type="button">Copiar enlace de ingreso</button></div><p class="small muted" style="line-height:1.6;margin-bottom:0">Después de publicarla con HTTPS, crea un Atajo de Apple usando “URL” → “Abrir URL”, o añade la página a tu pantalla de inicio. Nunca coloques contraseñas en estos enlaces.</p></div>
+      </section>
+      <section id="view-transactions" class="view" aria-label="Movimientos">
+        <div class="panel"><div class="panel-head"><div><h2>Historial de movimientos</h2><p>Edita, filtra y consulta tus registros.</p></div><button id="addTransactionButton" class="button primary">+ Movimiento</button></div>
+          <div class="filters"><input type="search" id="txSearch" placeholder="Buscar concepto o categoría" aria-label="Buscar movimientos"><select id="txTypeFilter" aria-label="Tipo de movimiento"><option value="all">Ingresos y gastos</option><option value="expense">Solo gastos</option><option value="income">Solo ingresos</option></select><select id="txCardFilter" aria-label="Filtrar por tarjeta"><option value="all">Todas las tarjetas</option></select><span id="txCount" class="filter-count"></span></div>
+          <div id="transactionsList" class="tx-list"></div>
+        </div>
+      </section>
+      <section id="view-cards" class="view" aria-label="Tarjetas">
+        <div class="panel"><div class="panel-head"><div><h2>Cuentas y tarjetas</h2><p>Saldo estimado con todos los movimientos históricos.</p></div><button type="button" class="button primary" id="addCardButton">+ Añadir tarjeta</button></div><div class="security-note">Los saldos son estimaciones de tus apuntes, no saldos consultados a los bancos. Las tarjetas de crédito aún no contabilizan pagos, intereses ni devoluciones.</div><div id="cardList" class="cards-grid"></div></div>
+      </section>
+      <section id="view-insights" class="view" aria-label="Estadísticas">
+        <div class="insight-grid"><div class="insight"><span>Ingresos del mes</span><strong id="insIncome">$0.00</strong></div><div class="insight"><span>Gastos del mes</span><strong id="insExpense">$0.00</strong></div><div class="insight"><span>Balance del mes</span><strong id="insBalance">$0.00</strong></div></div><div class="dashboard-grid"><div class="panel"><div class="panel-head"><div><h2>Gasto por categoría</h2><p>Porcentajes sobre el gasto del mes</p></div></div><div id="insCategory"></div></div><div class="panel"><div class="panel-head"><div><h2>Gasto por tarjeta</h2><p>No incluye efectivo ni gastos sin tarjeta vinculada</p></div></div><div id="insCards"></div></div></div>
+      </section>
+      <button type="button" id="fabButton" class="fab" aria-label="Registrar movimiento">+</button>
+    </main>
+    <nav class="mobile-nav" aria-label="Navegación móvil">
+      <button type="button" data-view="dashboard" aria-current="page"><span class="nav-icon">◫</span>Inicio</button><button type="button" data-view="transactions"><span class="nav-icon">⇄</span>Movimientos</button><button type="button" data-view="cards"><span class="nav-icon">▣</span>Tarjetas</button><button type="button" data-view="insights"><span class="nav-icon">▥</span>Reportes</button>
+    </nav>
+  </div>
+  <dialog id="chooseDialog" aria-labelledby="chooseTitle"><div class="dialog-pad"><button type="button" class="close-x" data-close-dialog aria-label="Cerrar">×</button><h2 id="chooseTitle">Nuevo movimiento</h2><p class="modal-sub">¿Qué deseas registrar?</p><div class="form-grid"><button class="button primary" id="chooseIncome" type="button">↙ Ingreso</button><button class="button danger" id="chooseExpense" type="button">↗ Gasto</button></div></div></dialog>
+  <dialog id="transactionDialog" aria-labelledby="txModalTitle"><div class="dialog-pad"><button class="close-x" data-close-dialog type="button" aria-label="Cerrar">×</button><h2 id="txModalTitle">Registrar gasto</h2><p class="modal-sub">Datos guardados de forma privada en tu cuenta de Supabase.</p>
+    <form id="transactionForm" novalidate><input id="txId" type="hidden"><div class="form-grid">
+      <div class="field"><label for="txType">Tipo</label><select id="txType" required><option value="expense">Gasto</option><option value="income">Ingreso</option></select></div>
+      <div class="field"><label for="txAmount">Cantidad · MXN</label><input id="txAmount" inputmode="decimal" type="text" autocomplete="off" placeholder="0.00" required></div>
+      <div class="field"><label for="txCategory">Categoría</label><select id="txCategory" required></select></div>
+      <div class="field"><label for="txDate">Fecha</label><input id="txDate" type="date" required></div>
+      <div class="field wide"><label for="txDescription">Concepto (opcional)</label><input id="txDescription" maxlength="250" autocomplete="off" placeholder="Por ejemplo, supermercado"></div>
+      <div class="field"><label for="txMethod">Método de pago</label><select id="txMethod"><option value="debit">Débito</option><option value="cash">Efectivo</option><option value="credit">Crédito</option><option value="transfer">Transferencia</option><option value="other">Otro</option></select></div>
+      <div class="field"><label for="txCard">Tarjeta asociada</label><select id="txCard"><option value="">Sin tarjeta</option></select></div>
+    </div><p class="status" id="txValidation" hidden role="alert"></p><div class="dialog-actions"><button type="button" class="button light" data-close-dialog>Cancelar</button><button type="submit" id="txSaveButton" class="button primary">Guardar movimiento</button></div></form>
+  </div></dialog>
+  <dialog id="cardDialog" aria-labelledby="cardModalTitle"><div class="dialog-pad"><button class="close-x" data-close-dialog type="button" aria-label="Cerrar">×</button><h2 id="cardModalTitle">Añadir tarjeta</h2><p class="modal-sub">Nunca guardamos CVV, NIP ni fecha de vencimiento.</p>
+    <form id="cardForm" novalidate><input type="hidden" id="cardId"><div class="form-grid">
+      <div class="field wide"><label for="cardName">Nombre para identificarla</label><input id="cardName" maxlength="60" required placeholder="Por ejemplo, Cuenta principal"></div>
+      <div class="field"><label for="cardInstitution">Banco o institución</label><input id="cardInstitution" maxlength="80" placeholder="Institución"></div>
+      <div class="field"><label for="cardType">Tipo</label><select id="cardType"><option value="debit">Débito</option><option value="credit">Crédito</option></select></div>
+      <div class="field"><label for="cardFour">Últimos cuatro dígitos</label><input id="cardFour" inputmode="numeric" maxlength="4" placeholder="1234" pattern="[0-9]{4}"></div>
+      <div class="field" id="startingBalanceRow"><label for="cardStarting">Saldo inicial · MXN</label><input id="cardStarting" inputmode="decimal" placeholder="0.00" value="0.00"></div>
+      <div class="field" id="creditLimitRow" hidden><label for="cardLimit">Límite de crédito · MXN</label><input id="cardLimit" inputmode="decimal" placeholder="0.00"></div>
+      <div class="field wide"><label style="display:flex;align-items:center;gap:9px"><input type="checkbox" id="cardActive" checked style="width:auto;min-height:auto"> Tarjeta activa</label></div>
+    </div><p class="status" id="cardValidation" hidden role="alert"></p><div class="dialog-actions"><button type="button" class="button light" data-close-dialog>Cancelar</button><button id="cardSaveButton" type="submit" class="button primary">Guardar tarjeta</button></div></form>
+  </div></dialog>
+  <dialog id="vaultDialog" aria-labelledby="vaultTitle"><div class="dialog-pad"><button class="close-x" data-close-dialog type="button" aria-label="Cerrar">×</button><h2 id="vaultTitle">Datos para depósitos</h2><p class="modal-sub" id="vaultSubtitle">Protegidos con cifrado AES-GCM en tu navegador.</p>
+    <div id="vaultUnlockPanel" hidden><form id="vaultUnlockForm" class="auth-form"><div class="field"><label for="vaultUnlockPassword">Contraseña maestra</label><input id="vaultUnlockPassword" type="password" autocomplete="off" minlength="10" required placeholder="Contraseña maestra"></div><button class="button dark full" type="submit">Desbloquear</button></form></div>
+    <div id="vaultReadPanel" hidden><div class="vault-sensitive"><div class="secret-label">Titular</div><p class="secret-value" id="secretHolder"></p><div class="secret-label">Banco / institución</div><p class="secret-value" id="secretInstitution"></p><div class="secret-label">CLABE</div><p class="secret-value" id="secretClabe"></p><div class="secret-label">Número de tarjeta</div><p class="secret-value" id="secretNumber"></p></div><div class="dialog-actions"><button class="button light" type="button" id="vaultHide">Ocultar</button><button class="button primary" type="button" id="vaultCopy">Copiar datos</button></div><button type="button" id="vaultEditButton" class="button ghost full" style="margin-top:10px">Editar información cifrada</button></div>
+    <div id="vaultEditPanel" hidden><form id="vaultEditForm" class="auth-form" novalidate><div class="field"><label for="vaultHolder">Nombre completo del titular</label><input id="vaultHolder" autocomplete="off" maxlength="120" required></div><div class="field"><label for="vaultClabe">CLABE interbancaria (opcional)</label><input id="vaultClabe" inputmode="numeric" maxlength="18" autocomplete="off" placeholder="18 dígitos"></div><div class="field"><label for="vaultNumber">Número de tarjeta (opcional)</label><input id="vaultNumber" inputmode="numeric" maxlength="16" autocomplete="off" placeholder="16 dígitos"></div><div class="field"><label for="vaultSavePassword">Contraseña maestra (independiente del inicio de sesión)</label><input id="vaultSavePassword" type="password" autocomplete="off" minlength="10" required><span class="help">La misma contraseña debe desbloquear todas las tarjetas. No se almacena ni se puede recuperar si la olvidas.</span></div><div class="security-note">Una tarjeta completa almacenada, incluso cifrada, puede implicar obligaciones de cumplimiento. No ingreses CVV, NIP ni fecha de vencimiento. Para recibir transferencias, prioriza la CLABE.</div><button id="vaultSaveButton" class="button primary full" type="submit">Cifrar y guardar</button></form></div>
+    <p id="vaultMessage" class="status" hidden role="alert"></p>
+  </div></dialog>
+  <div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
+  <script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/+esm';
+
+  // Solo clave publica para navegadores. JAMAS incorporar sb_secret o service_role.
+  const SUPABASE_URL = 'https://kzpjlemsssmukimvcqcp.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_OZhMnmhMiWxOhypMWpjB3Q_uX-U_4xq';
+  const sb = createClient(SUPABASE_URL, SUPABASE_KEY, {
+    auth: { storageKey:'fp-beta-session-v1', persistSession:true, autoRefreshToken:true, detectSessionInUrl:true, flowType:'implicit' },
+    db: { retry:false }
+  });
+  // En esta version beta el acceso es de SOLO LECTURA. No activar
+  // escrituras con tu cuenta principal. Para pruebas CRUD utiliza una cuenta QA.
+  const BETA_WRITES_ALLOWED = false;
+  function assertBetaWritable(){
+    if(!BETA_WRITES_ALLOWED) throw new Error('Modo beta de solo lectura: no se guardó ni eliminó información. Las pruebas con escrituras requieren cuenta QA y habilitación consciente en el código beta.');
+  }
+  const $ = (id) => document.getElementById(id);
+  const INCOME_CATEGORIES = ['Salario','Fotografía','Bonificaciones','Ventas','Otros ingresos'];
+  const EXPENSE_CATEGORIES = ['Alimentación','Transporte','Servicios','Compras','Entretenimiento','Salud','Suscripciones','Fotografía','Otros'];
+  const formatter = new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',minimumFractionDigits:2,maximumFractionDigits:2});
+  const dateFormatter = new Intl.DateTimeFormat('es-MX',{day:'2-digit',month:'short',year:'numeric'});
+  const state = {
+    user:null,transactions:[],cards:[],secrets:[],view:'dashboard',month:localDate().slice(0,7),
+    loading:false,loaded:false,authMode:'login',recovery:false,filters:{search:'',type:'all',card:'all'},
+    vaultCardId:null,vaultUnlocked:null,vaultTimer:null,toastTimer:null,loadSerial:0,
+    pendingNewId:null,saving:false,cardSaving:false,vaultSaving:false,quickConsumed:false,
+    lastActivity:Date.now(),
+  };
+  const requestedQuick = new URLSearchParams(location.search).get('quick');
+  const quickType = ['income','expense'].includes(requestedQuick)?requestedQuick:null;
+
+  function localDate() { const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+  function monthTitle(month) { const [y,m]=month.split('-').map(Number);return new Intl.DateTimeFormat('es-MX',{month:'long',year:'numeric'}).format(new Date(y,m-1,1)); }
+  function dateLabel(iso) { const [y,m,d]=iso.split('-').map(Number);return dateFormatter.format(new Date(y,m-1,d)); }
+  function currency(amount){return formatter.format(Number(amount)||0);}
+  function cents(amount){return Math.round((Number(amount)||0)*100);}
+  function centsMoney(c){return currency(c/100);}
+  function amountCents(value,{allowZero=false}={}){
+    let v=String(value).trim().replace(/\s/g,'').replace(',', '.');
+    if (!/^\d{1,10}(?:\.\d{1,2})?$/.test(v)) throw new Error('Introduce un importe válido con máximo dos decimales.');
+    const [whole,fraction='']=v.split('.');const n=Number(whole)*100+Number(fraction.padEnd(2,'0'));
+    if (!Number.isSafeInteger(n)||n>999999999999||(!allowZero&&n<=0)) throw new Error('El importe debe ser mayor que cero y estar dentro del límite permitido.');
+    return n;
+  }
+  function isoValid(str){if(!/^\d{4}-\d{2}-\d{2}$/.test(str))return false;const [y,m,d]=str.split('-').map(Number);const check=new Date(y,m-1,d);return check.getFullYear()===y&&check.getMonth()+1===m&&check.getDate()===d;}
+  function dataError(error){
+    if(!error)return 'Error desconocido.';
+    const code=String(error.code||'');
+    if (code==='42501'||code==='PGRST301')return 'Acceso denegado. Comprueba que tu sesión sea válida y que Data API incluya estas tablas.';
+    if (code==='23503')return 'No fue posible asociar esta tarjeta. Comprueba que pertenezca a tu cuenta.';
+    if (code==='23505')return 'Existe un registro con este identificador. Actualiza el listado antes de repetir.';
+    if (code==='23514'||code==='22001')return 'Los datos no cumplen las restricciones de la base de datos.';
+    const msg=String(error.message||error);
+    if(/Failed to fetch|NetworkError|fetch failed|offline/i.test(msg))return 'No se pudo contactar al servidor. Comprueba tu conexión; el guardado no está confirmado.';
+    return msg.slice(0,220);
+  }
+  function notify(message,kind='success'){const box=$('toast');box.textContent=message;box.className='toast'+(kind==='error'?' error':'');box.hidden=false;clearTimeout(state.toastTimer);state.toastTimer=setTimeout(()=>box.hidden=true,5200);}
+  function showStatus(id,msg,kind='error'){const el=$(id);el.textContent=msg;el.className='status '+kind;el.hidden=false;}
+  function clearStatus(id){$(id).hidden=true;$(id).textContent='';}
+  function setBusy(button,busy,label){button.disabled=busy;if(label)button.textContent=label;}
+  function safeText(tag,text,cls){const el=document.createElement(tag);if(cls)el.className=cls;el.textContent=String(text??'');return el;}
+  function pill(text,cls=''){const el=safeText('span',text,cls);return el;}
+  function emptyMessage(parent,title,detail){const el=safeText('div','', 'empty');el.append(safeText('strong',title),document.createTextNode(detail));parent.replaceChildren(el);}
+  function button(text,klass,fn){const el=safeText('button',text,'button '+klass);el.type='button';el.addEventListener('click',fn);return el;}
+  function resetSensitive(){state.vaultUnlocked=null;clearTimeout(state.vaultTimer);state.vaultTimer=null;for(const id of ['vaultHolder','vaultClabe','vaultNumber','vaultSavePassword','vaultUnlockPassword','secretHolder','secretClabe','secretNumber','secretInstitution'])$(id).value!==undefined?$(id).value='':$(id).textContent='';$('vaultReadPanel').hidden=true;}
+  function closeDialog(id){const el=$(id);if(el.open)el.close();}
+  function openDialog(id){const el=$(id);if(!el.open)el.showModal();}
+  function setAuthMode(mode){state.authMode=mode;$('authStandard').hidden=!['login','register'].includes(mode);$('requestReset').hidden=mode!=='forgot';$('completeReset').hidden=mode!=='recover';$('tabLogin').setAttribute('aria-selected',String(mode==='login'));$('tabRegister').setAttribute('aria-selected',String(mode==='register'));$('authTitle').textContent=mode==='register'?'Crear cuenta':'Iniciar sesión';$('authSubmit').textContent=mode==='register'?'Registrarme':'Iniciar sesión';$('authPassword').autocomplete=mode==='register'?'new-password':'current-password';clearStatus('authMessage');}
+  function showAuth(){$('dataBanner').hidden=true;state.user=null;state.transactions=[];state.cards=[];state.secrets=[];state.loaded=false;state.loading=false;state.loadSerial++;resetSensitive();for(const d of document.querySelectorAll('dialog[open]'))d.close();$('appShell').hidden=true;$('authScreen').hidden=false;}
+  function showApp(){if(!state.user)return;$('authScreen').hidden=true;$('appShell').hidden=false;$('accountEmail').textContent=state.user.email||'Usuario';$('monthFilter').value=state.month;render();}
+  async function getVerifiedUser(){const {data,error}=await sb.auth.getUser();if(error||!data?.user)throw new Error('Tu sesión no es válida. Inicia sesión nuevamente.');if(state.user?.id!==data.user.id)throw new Error('La cuenta activa cambió. Actualiza la página.');return data.user;}
+  async function loadAll(table,userId,orderCol='created_at'){
+    const pageSize=500,all=[];let page=0;
+    for(;;){
+      const {data,error}=await sb.from(table).select('*').eq('user_id',userId).order(orderCol,{ascending:false}).order('id',{ascending:true}).range(page*pageSize,(page+1)*pageSize-1);
+      if(error)throw error;
+      all.push(...(data||[]));if(!data||data.length<pageSize)break;
+      page++;
+      if(page>500)throw new Error('Demasiados registros para cargar en una sola sesión.');
+    }
+    return all;
+  }
+  async function refreshData(){
+    if(!state.user||state.loading)return;
+    const serial=++state.loadSerial;const userId=state.user.id;state.loading=true; if(!state.loaded){$('dataBannerText').textContent='Cargando tus movimientos reales desde Supabase…';$('retryLoad').hidden=true;$('dataBanner').hidden=false;}
+    try {
+      const [transactions,cards,secrets]=await Promise.all([loadAll('transactions',userId,'transaction_date'),loadAll('payment_cards',userId),loadAll('payment_card_secrets',userId)]);
+      if(serial!==state.loadSerial||state.user?.id!==userId)return;
+      state.transactions=transactions;state.cards=cards;state.secrets=secrets;state.loaded=true;$('dataBanner').hidden=true;render();
+    }catch(e){if(serial===state.loadSerial){const msg=dataError(e);notify(msg,'error');$('dataBannerText').textContent='No se pudieron actualizar los datos: '+msg;$('retryLoad').hidden=false;$('dataBanner').hidden=false;if(!state.loaded)render();}}
+    finally{if(serial===state.loadSerial)state.loading=false;}
+  }
+  function currentMonthTransactions(){return state.transactions.filter(t=>t.transaction_date?.startsWith(state.month));}
+  function aggregate(list){let incoming=0,outgoing=0;for(const t of list){if(t.type==='income')incoming+=cents(t.amount);else if(t.type==='expense')outgoing+=cents(t.amount);}return {incoming,outgoing,net:incoming-outgoing};}
+  function cardName(id){const c=state.cards.find(x=>x.id===id);return c?`${c.name}${c.last_four?' · '+c.last_four:''}`:'Sin tarjeta';}
+  function cardAmounts(card){const ts=state.transactions.filter(t=>t.card_id===card.id);const outgoing=ts.filter(x=>x.type==='expense').reduce((sum,t)=>sum+cents(t.amount),0);const incoming=ts.filter(x=>x.type==='income').reduce((sum,t)=>sum+cents(t.amount),0);
+    if(card.card_type==='credit')return {available:cents(card.credit_limit||0)-outgoing,spent:outgoing,type:'credit'};
+    return {available:cents(card.starting_balance||0)+incoming-outgoing,spent:outgoing,type:'debit'};
+  }
+  function chartInto(id,records,{relative=false}={}){
+    const node=$(id);node.replaceChildren();if(records.length===0){emptyMessage(node,'Sin gastos en este período','Registra un movimiento para ver la distribución.');return;}
+    records.sort((a,b)=>b.value-a.value);const total=records.reduce((s,r)=>s+r.value,0),max=Math.max(...records.map(x=>x.value),1);
+    for(const r of records){const line=safeText('div','','chart-line');const label=safeText('span',r.name,'cat');label.title=r.name;const track=safeText('div','','chart-track');const fill=safeText('div','','chart-fill');fill.style.width=`${Math.max(0,100*r.value/max)}%`;track.append(fill);const val=safeText('span',relative?`${Math.round(r.value/Math.max(total,1)*100)} %`:centsMoney(r.value),'chart-val');line.append(label,track,val);node.append(line);}
+  }
+  function categoryExpenses(list){const map=new Map();for(const t of list){if(t.type==='expense')map.set(t.category,(map.get(t.category)||0)+cents(t.amount));}return [...map].map(([name,value])=>({name,value}));}
+  function spendByCard(list){const map=new Map();for(const t of list){if(t.type==='expense'&&t.card_id)map.set(t.card_id,(map.get(t.card_id)||0)+cents(t.amount));}return [...map].map(([id,value])=>({name:cardName(id),value}));}
+  function makeTxRow(t,{withActions=false}={}){
+    const row=safeText('div','','tx-row');const symbol=safeText('span',t.type==='income'?'↙':'↗','tx-symbol '+(t.type==='income'?'income':''));const info=safeText('div','','tx-info');info.append(safeText('strong',t.description?.trim()||t.category),safeText('small',`${t.category} · ${dateLabel(t.transaction_date)}${t.card_id?' · '+cardName(t.card_id):''}`));
+    const amount=safeText('span',`${t.type==='income'?'+':'−'}${currency(t.amount)}`,'tx-amount '+t.type);row.append(symbol,info,amount);
+    if(withActions){const actions=safeText('div','','tx-buttons');const edit=button('Editar','light mini',()=>openTransaction(t.type,t));edit.setAttribute('aria-label','Editar movimiento');const del=button('×','danger mini',()=>deleteTransaction(t));del.setAttribute('aria-label','Eliminar movimiento');actions.append(edit,del);row.append(actions);}
+    return row;
+  }
+  function render(){if(!state.user)return;const monthTx=currentMonthTransactions();const sums=aggregate(monthTx);$('netHero').textContent=centsMoney(sums.net);$('netHero').style.color=sums.net<0?'#ffaaa9':'#fff';$('monthHeroLabel').textContent=`Ingresos menos egresos · ${monthTitle(state.month)}`;$('statIncome').textContent=centsMoney(sums.incoming);$('statExpense').textContent=centsMoney(sums.outgoing);$('statCount').textContent=String(monthTx.length);
+    $('insIncome').textContent=centsMoney(sums.incoming);$('insExpense').textContent=centsMoney(sums.outgoing);$('insBalance').textContent=centsMoney(sums.net);
+    chartInto('categoryChart',categoryExpenses(monthTx));chartInto('insCategory',categoryExpenses(monthTx),{relative:true});chartInto('insCards',spendByCard(monthTx));
+    const recent=$('recentTransactions');recent.replaceChildren();if(!monthTx.length)emptyMessage(recent,'Aún sin movimientos','Tu actividad aparecerá aquí cuando registres ingresos o gastos.');else for(const t of [...monthTx].sort(sortTransactions).slice(0,5))recent.append(makeTxRow(t));
+    renderCardOptions();renderTransactions();renderCards();updateNav();
+  }
+  function sortTransactions(a,b){return b.transaction_date.localeCompare(a.transaction_date)||(b.created_at||'').localeCompare(a.created_at||'');}
+  function renderCardOptions(){const tx=$('txCard'),filter=$('txCardFilter');const old=tx.value,oldFilter=filter.value;tx.replaceChildren(new Option('Sin tarjeta',''));filter.replaceChildren(new Option('Todas las tarjetas','all'));
+    for(const c of [...state.cards].sort((a,b)=>a.name.localeCompare(b.name))){tx.add(new Option(cardName(c.id),c.id));filter.add(new Option(cardName(c.id),c.id));}tx.value=old;if(tx.selectedIndex<0)tx.value='';filter.value=state.filters.card;if(filter.selectedIndex<0){filter.value='all';state.filters.card='all';}if(oldFilter!=='all'&&filter.value!==oldFilter)state.filters.card='all';
+  }
+  function renderTransactions(){const list=$('transactionsList');list.replaceChildren();const q=state.filters.search.toLocaleLowerCase('es-MX');let ts=currentMonthTransactions().filter(t=>state.filters.type==='all'||t.type===state.filters.type).filter(t=>state.filters.card==='all'||t.card_id===state.filters.card).filter(t=>!q||`${t.description||''} ${t.category} ${cardName(t.card_id)}`.toLocaleLowerCase('es-MX').includes(q)).sort(sortTransactions);
+    $('txCount').textContent=`${ts.length} movimiento${ts.length===1?'':'s'} del mes`;if(!ts.length){emptyMessage(list,'No hay movimientos para mostrar','Ajusta los filtros o registra uno nuevo.');return;}for(const t of ts)list.append(makeTxRow(t,{withActions:true}));
+  }
+  function renderCards(){const list=$('cardList');list.replaceChildren();if(!state.cards.length){emptyMessage(list,'No tienes tarjetas registradas','Añade una tarjeta de débito o crédito para vincular tus gastos.');return;}
+    for(const card of [...state.cards].sort((a,b)=>Number(b.is_active)-Number(a.is_active)||a.name.localeCompare(b.name))){
+      const box=safeText('article','','wallet-card'+(!card.is_active?' inactive':''));const top=safeText('div','','card-top');const head=safeText('div');head.append(safeText('div',card.institution||'Institución no indicada','eyebrow'),safeText('h3',card.name));top.append(head,pill(card.is_active?(card.card_type==='credit'?'Crédito':'Débito'):'Inactiva','badge'));box.append(top);
+      box.append(safeText('div',`•••• ${card.last_four||'----'}`,'number'));
+      const info=cardAmounts(card);box.append(safeText('div',centsMoney(info.available),'balance'),safeText('div',card.card_type==='credit'?'Disponible estimado parcial':'Saldo estimado','balance-label'));
+      const spentMonth=currentMonthTransactions().filter(t=>t.card_id===card.id&&t.type==='expense').reduce((s,t)=>s+cents(t.amount),0);
+      box.append(safeText('p',`Gastos del mes: ${centsMoney(spentMonth)}`,'small muted'));
+      if(card.card_type==='credit')box.append(safeText('div','No descuenta intereses ni contempla pagos o devoluciones.','warning'));
+      const actions=safeText('div','','card-actions');actions.append(button('Datos bancarios','dark mini',()=>openVault(card.id)),button('Movimientos','light mini',()=>{state.filters.card=card.id;state.filters.type='all';state.filters.search='';$('txSearch').value='';$('txTypeFilter').value='all';setView('transactions');}),button('Editar','light mini',()=>openCard(card)),button('Eliminar','danger mini',()=>deleteCard(card)));box.append(actions);list.append(box);
+    }
+  }
+  function updateNav(){const info={dashboard:['PANORAMA GENERAL','Tu resumen'],transactions:['REGISTRO FINANCIERO','Movimientos'],cards:['CUENTAS VINCULADAS','Mis tarjetas'],insights:['ANÁLISIS MENSUAL','Estadísticas']};$('sectionKicker').textContent=info[state.view][0];$('sectionTitle').textContent=info[state.view][1];for(const v of document.querySelectorAll('.view'))v.classList.toggle('active',v.id==='view-'+state.view);for(const b of document.querySelectorAll('[data-view]')){if(b.dataset.view===state.view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');}}
+  function setView(view){if(!['dashboard','transactions','cards','insights'].includes(view))return;resetSensitive();if($('vaultDialog').open)closeDialog('vaultDialog');state.view=view;render();window.scrollTo({top:0,behavior:'auto'});}
+  function buildCategories(type,selected){const select=$('txCategory');select.replaceChildren();for(const cat of(type==='income'?INCOME_CATEGORIES:EXPENSE_CATEGORIES))select.add(new Option(cat,cat));if(selected&&!Array.from(select.options).some(o=>o.value===selected))select.add(new Option(selected,selected));select.value=selected||select.options[0].value;}
+  function openTransaction(type='expense',record=null){if(!state.user){notify('Primero inicia sesión.','error');return;}
+    $('transactionForm').reset();clearStatus('txValidation');$('txId').value=record?.id||'';$('txType').value=record?.type||type;$('txAmount').value=record?.amount!==undefined?String(record.amount):'';$('txDate').value=record?.transaction_date||localDate();$('txDescription').value=record?.description||'';$('txMethod').value=record?.payment_method||(type==='income'?'transfer':'debit');renderCardOptions();$('txCard').value=record?.card_id||'';buildCategories($('txType').value,record?.category);$('txModalTitle').textContent=record?'Editar movimiento':`Registrar ${type==='income'?'ingreso':'gasto'}`;
+    if(!record)state.pendingNewId=crypto.randomUUID();else state.pendingNewId=null;
+    openDialog('transactionDialog');setTimeout(()=>$('txAmount').focus(),60);
+  }
+  function selectedCard(){return state.cards.find(c=>c.id===$('txCard').value)||null;}
+  function methodForCard(){const c=selectedCard();if(c)$('txMethod').value=c.card_type;}
+  async function saveTransaction(event){event.preventDefault();if(state.saving)return;clearStatus('txValidation');
+    try{assertBetaWritable();
+      const user=await getVerifiedUser();const type=$('txType').value;const amt=amountCents($('txAmount').value);const card=selectedCard();if(!isoValid($('txDate').value))throw new Error('Selecciona una fecha válida.');if(!['income','expense'].includes(type))throw new Error('Tipo inválido.');
+      const oldTx=state.transactions.find(t=>t.id===$('txId').value);const categories=type==='income'?INCOME_CATEGORIES:EXPENSE_CATEGORIES;if(!categories.includes($('txCategory').value)&&oldTx?.category!==$('txCategory').value)throw new Error('Selecciona una categoría válida.');
+      if(card&&!card.is_active&&!$('txId').value)throw new Error('La tarjeta está inactiva; actívala para registrar nuevos movimientos.');
+      if(card&&type==='income'&&card.card_type==='credit')throw new Error('No registres ingresos como pagos de una tarjeta de crédito: esa contabilidad se incorporará por separado.');
+      if(card&&['debit','credit'].includes($('txMethod').value)&&$('txMethod').value!==card.card_type)throw new Error('El método de pago no coincide con el tipo de tarjeta.');
+      const record={type,amount:(amt/100).toFixed(2),category:$('txCategory').value,description:$('txDescription').value.trim(),transaction_date:$('txDate').value,payment_method:$('txMethod').value,card_id:card?.id||null};
+      const id=$('txId').value;state.saving=true;setBusy($('txSaveButton'),true,'Guardando...');
+      let result;if(id){result=await sb.from('transactions').update(record).eq('id',id).eq('user_id',user.id).select('id');}
+      else{result=await sb.from('transactions').insert({...record,id:state.pendingNewId,user_id:user.id}).select('id');}
+      if(result.error){if(!id&&result.error.code==='23505'&&state.pendingNewId){
+        const check=await sb.from('transactions').select('id').eq('id',state.pendingNewId).eq('user_id',user.id).maybeSingle();
+        if(!check.error&&check.data){closeDialog('transactionDialog');notify('El movimiento ya había quedado guardado.');await refreshData();return;}
+      }throw result.error;}
+      if(!result.data?.length)throw new Error('La operación no modificó ningún registro. Comprueba tu sesión.');
+      closeDialog('transactionDialog');notify(id?'Movimiento actualizado.':'Movimiento guardado.');await refreshData();
+    }catch(e){showStatus('txValidation',dataError(e));}
+    finally{state.saving=false;setBusy($('txSaveButton'),false,'Guardar movimiento');}
+  }
+  async function deleteTransaction(record){if(!BETA_WRITES_ALLOWED){notify('Beta de solo lectura: no se ha eliminado el movimiento.','error');return;}if(!confirm(`¿Eliminar el movimiento «${record.description||record.category}» de ${currency(record.amount)}? Esta acción no se puede deshacer.`))return;
+    try{const user=await getVerifiedUser();const {data,error}=await sb.from('transactions').delete().eq('id',record.id).eq('user_id',user.id).select('id');if(error)throw error;if(!data?.length)throw new Error('No se eliminó ningún registro.');notify('Movimiento eliminado.');await refreshData();}catch(e){notify(dataError(e),'error');}
+  }
+  function cardTypeUi(){$('startingBalanceRow').hidden=$('cardType').value==='credit';$('creditLimitRow').hidden=$('cardType').value!=='credit';}
+  function openCard(card=null){$('cardForm').reset();clearStatus('cardValidation');$('cardId').value=card?.id||'';$('cardName').value=card?.name||'';$('cardInstitution').value=card?.institution||'';$('cardType').value=card?.card_type||'debit';$('cardType').disabled=Boolean(card&&state.transactions.some(t=>t.card_id===card.id));$('cardFour').value=card?.last_four||'';$('cardStarting').value=card?.starting_balance??'0.00';$('cardLimit').value=card?.credit_limit??'';$('cardActive').checked=card?.is_active??true;$('cardModalTitle').textContent=card?'Editar tarjeta':'Añadir tarjeta';cardTypeUi();openDialog('cardDialog');}
+  async function saveCard(event){event.preventDefault();if(state.cardSaving)return;clearStatus('cardValidation');
+    try{assertBetaWritable();
+      const user=await getVerifiedUser(),name=$('cardName').value.trim(),inst=$('cardInstitution').value.trim(),type=$('cardType').value,four=$('cardFour').value.trim();if(!name||name.length>60)throw new Error('El nombre de la tarjeta debe contener entre 1 y 60 caracteres.');if(inst.length>80)throw new Error('El nombre de la institución es demasiado largo.');if(four&&!/^\d{4}$/.test(four))throw new Error('Introduce exactamente cuatro dígitos o deja el campo vacío.');
+      const current=state.cards.find(c=>c.id===$('cardId').value);if(current&&type!==current.card_type&&state.transactions.some(t=>t.card_id===current.id))throw new Error('No puedes cambiar el tipo de una tarjeta con movimientos asociados.');
+      const start=type==='debit'?amountCents($('cardStarting').value||'0',{allowZero:true}):0;const limit=type==='credit'?amountCents($('cardLimit').value||'0',{allowZero:true}):null;
+      const data={name,institution:inst,card_type:type,last_four:four||null,starting_balance:(start/100).toFixed(2),credit_limit:limit===null?null:(limit/100).toFixed(2),is_active:$('cardActive').checked};
+      state.cardSaving=true;setBusy($('cardSaveButton'),true,'Guardando...');const id=$('cardId').value;let result;
+      if(id)result=await sb.from('payment_cards').update(data).eq('id',id).eq('user_id',user.id).select('id');
+      else result=await sb.from('payment_cards').insert({...data,user_id:user.id}).select('id');
+      if(result.error)throw result.error;if(!result.data?.length)throw new Error('No se guardó la tarjeta.');closeDialog('cardDialog');notify(id?'Tarjeta actualizada.':'Tarjeta añadida.');await refreshData();
+    }catch(e){showStatus('cardValidation',dataError(e));}finally{state.cardSaving=false;setBusy($('cardSaveButton'),false,'Guardar tarjeta');}
+  }
+  async function deleteCard(card){if(!BETA_WRITES_ALLOWED){notify('Beta de solo lectura: no se ha eliminado la tarjeta.','error');return;}if(!confirm(`¿Eliminar «${card.name}»? Su información cifrada se eliminará definitivamente y los movimientos asociados conservarán su importe, pero quedarán sin tarjeta.`))return;
+    try{const user=await getVerifiedUser();const {data,error}=await sb.from('payment_cards').delete().eq('id',card.id).eq('user_id',user.id).select('id');if(error)throw error;if(!data?.length)throw new Error('No se eliminó la tarjeta.');notify('Tarjeta eliminada.');await refreshData();}catch(e){notify(dataError(e),'error');}
+  }
+  // Verificacion modulo 10 de CLABE mexicana; pesos 3,7,1.
+  function clabeValid(s){if(!/^\d{18}$/.test(s))return false;const weights=[3,7,1];let sum=0;for(let i=0;i<17;i++)sum+=(Number(s[i])*weights[i%3])%10;return (10-(sum%10))%10===Number(s[17]);}
+  function bytesB64(bytes){let s='';for(const x of bytes)s+=String.fromCharCode(x);return btoa(s);}
+  function b64Bytes(str){const s=atob(str);const arr=new Uint8Array(s.length);for(let i=0;i<s.length;i++)arr[i]=s.charCodeAt(i);return arr;}
+  async function deriveKey(password,salt,iterations){const raw=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations,hash:'SHA-256'},raw,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
+  async function encryptDetails(details,password){const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));const key=await deriveKey(password,salt,600000);const payload=new TextEncoder().encode(JSON.stringify(details));const encrypted=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,payload);return {encrypted_payload:bytesB64(new Uint8Array(encrypted)),salt:bytesB64(salt),iv:bytesB64(iv),kdf_iterations:600000,crypto_version:1};}
+  async function decryptDetails(secret,password){if(secret.crypto_version!==1||!Number.isSafeInteger(secret.kdf_iterations)||secret.kdf_iterations<100000||secret.kdf_iterations>1200000)throw new Error('Formato cifrado no compatible.');try{const key=await deriveKey(password,b64Bytes(secret.salt),secret.kdf_iterations);const clear=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64Bytes(secret.iv)},key,b64Bytes(secret.encrypted_payload));const data=JSON.parse(new TextDecoder().decode(clear));if(typeof data?.holder!=='string'||typeof data?.clabe!=='string'||typeof data?.number!=='string')throw new Error('Contenido inesperado.');return data;}catch(e){throw new Error('Contraseña maestra incorrecta o datos cifrados dañados.');}}
+  async function verifyMasterForAll(password){for(const secret of state.secrets)await decryptDetails(secret,password);}
+  function vaultCard(){return state.cards.find(c=>c.id===state.vaultCardId)||null;}
+  function vaultSecret(){return state.secrets.find(s=>s.card_id===state.vaultCardId)||null;}
+  function changeVaultPanel(which){$('vaultUnlockPanel').hidden=which!=='unlock';$('vaultReadPanel').hidden=which!=='read';$('vaultEditPanel').hidden=which!=='edit';clearStatus('vaultMessage');}
+  function openVault(cardId){resetSensitive();state.vaultCardId=cardId;const card=vaultCard();if(!card)return; $('vaultTitle').textContent=`Datos de ${card.name}`;$('vaultSubtitle').textContent='Solo tú podrás descifrarlos con tu contraseña maestra.';$('vaultEditForm').reset();$('vaultUnlockForm').reset();
+    if(vaultSecret()){changeVaultPanel('unlock');}else{changeVaultPanel('edit');}
+    openDialog('vaultDialog');
+  }
+  function revealForLimitedTime(data){state.vaultUnlocked={holder:data.holder,clabe:data.clabe,number:data.number};$('secretHolder').textContent=data.holder||'No disponible';$('secretInstitution').textContent=vaultCard()?.institution||'No indicada';$('secretClabe').textContent=data.clabe||'No registrada';$('secretNumber').textContent=data.number||'No registrado';changeVaultPanel('read');clearTimeout(state.vaultTimer);state.vaultTimer=setTimeout(()=>lockVault('Información oculta por seguridad.'),45000);}
+  function lockVault(message){resetSensitive();if($('vaultDialog').open){if(vaultSecret())changeVaultPanel('unlock');else changeVaultPanel('edit');if(message)showStatus('vaultMessage',message,'success');}}
+  async function unlockVault(event){event.preventDefault();const pwd=$('vaultUnlockPassword').value;try{const secret=vaultSecret();if(!secret)throw new Error('No hay datos bancarios registrados.');const data=await decryptDetails(secret,pwd);$('vaultUnlockPassword').value='';revealForLimitedTime(data);}catch(e){showStatus('vaultMessage',dataError(e));$('vaultUnlockPassword').value='';}}
+  function editVault(){if(!state.vaultUnlocked)return;const d=state.vaultUnlocked;$('vaultHolder').value=d.holder;$('vaultClabe').value=d.clabe;$('vaultNumber').value=d.number;$('vaultSavePassword').value='';state.vaultUnlocked=null;clearTimeout(state.vaultTimer);changeVaultPanel('edit');}
+  async function saveVault(event){event.preventDefault();if(state.vaultSaving)return;clearStatus('vaultMessage');
+    try{assertBetaWritable();
+      const user=await getVerifiedUser(),card=vaultCard();if(!card)throw new Error('Tarjeta no disponible.');const holder=$('vaultHolder').value.trim(),clabe=$('vaultClabe').value.replace(/\s/g,''),number=$('vaultNumber').value.replace(/\s/g,''),pwd=$('vaultSavePassword').value;
+      if(holder.length<3||holder.length>120)throw new Error('Indica el nombre completo del titular.');if(!clabe&&!number)throw new Error('Registra al menos una CLABE o un número de tarjeta.');if(clabe&&!clabeValid(clabe))throw new Error('La CLABE debe tener 18 dígitos y un dígito verificador válido.');if(number&&!/^\d{16}$/.test(number))throw new Error('El número de tarjeta debe tener exactamente 16 dígitos.');if(number&&card.last_four&&card.last_four!==number.slice(-4))throw new Error('Los últimos cuatro dígitos no coinciden con los registrados en esta tarjeta.');if(pwd.length<10)throw new Error('La contraseña maestra debe tener al menos 10 caracteres.');
+      state.vaultSaving=true;setBusy($('vaultSaveButton'),true,'Cifrando...');
+      // Invariante sin cambiar el esquema: una unica frase debe descifrar todas las tarjetas.
+      await verifyMasterForAll(pwd);
+      const ciphertext=await encryptDetails({holder,clabe,number},pwd);
+      const {data,error}=await sb.from('payment_card_secrets').upsert({card_id:card.id,user_id:user.id,...ciphertext},{onConflict:'card_id'}).select('id');
+      if(error)throw error;if(!data?.length)throw new Error('No se confirmó el guardado cifrado.');
+      $('vaultSavePassword').value='';$('vaultEditForm').reset();resetSensitive();closeDialog('vaultDialog');notify('Información bancaria cifrada y guardada.');await refreshData();
+    }catch(e){showStatus('vaultMessage',dataError(e));$('vaultSavePassword').value='';}finally{state.vaultSaving=false;setBusy($('vaultSaveButton'),false,'Cifrar y guardar');}
+  }
+  async function copyShortcut(type){try{if(location.protocol!=='https:')throw new Error('Publica primero esta página mediante HTTPS para generar el enlace del Atajo.');const url=new URL(location.href);url.search='';url.hash='';url.pathname=new URL('../',location.href).pathname;url.searchParams.set('quick',type);await navigator.clipboard.writeText(url.toString());notify(`Enlace de ${type==='income'?'ingresos':'gastos'} copiado para Atajos.`);}catch(e){notify(dataError(e),'error');}}
+  async function copyVault(){if(!state.vaultUnlocked)return;try{if(!window.isSecureContext||!navigator.clipboard?.writeText)throw new Error('El portapapeles requiere HTTPS y permisos del navegador.');const data=state.vaultUnlocked,card=vaultCard();const text=`Nombre del titular: ${data.holder}\nBanco: ${card?.institution||'No indicado'}\nCLABE: ${data.clabe||'No registrada'}\nNúmero de tarjeta: ${data.number||'No registrado'}`;await navigator.clipboard.writeText(text);notify('Datos copiados. Recuerda que permanecen en el portapapeles hasta reemplazarlos.');lockVault();}catch(e){notify(dataError(e),'error');}}
+  async function handleAuth(event){event.preventDefault();clearStatus('authMessage');const mode=state.authMode,email=$('authEmail').value.trim(),password=$('authPassword').value;
+    if(mode==='register')return showStatus('authMessage','El registro de cuentas está deshabilitado en el laboratorio beta. Usa la versión principal.');
+    if(!email||!password)return showStatus('authMessage','Completa tu correo y contraseña.');if(mode==='register'&&password.length<10)return showStatus('authMessage','Crea una contraseña de al menos 10 caracteres.');
+    const submit=$('authSubmit');setBusy(submit,true,'Conectando...');try{
+      const redirectTo=location.protocol==='https:'?location.origin+location.pathname:undefined;
+      const response=mode==='register'?await sb.auth.signUp({email,password,options:redirectTo?{emailRedirectTo:redirectTo}:{}}):await sb.auth.signInWithPassword({email,password});
+      if(response.error)throw response.error;
+      $('authPassword').value='';if(mode==='register'&&!response.data.session){showStatus('authMessage','Cuenta creada. Revisa tu correo y confirma tu dirección antes de iniciar sesión.','success');}
+      else if(response.data.session){notify('Sesión iniciada.');await bootstrapUser(response.data.user);}
+      else showStatus('authMessage','Revisa tu correo para completar el acceso.','success');
+    }catch(e){showStatus('authMessage',dataError(e));}finally{setBusy(submit,false,mode==='register'?'Registrarme':'Iniciar sesión');}
+  }
+  async function requestPasswordReset(event){event.preventDefault();clearStatus('authMessage');try{assertBetaWritable();const email=$('resetEmail').value.trim();const redirectTo=location.protocol==='https:'?location.origin+location.pathname:undefined;const {error}=await sb.auth.resetPasswordForEmail(email,redirectTo?{redirectTo}:{});if(error)throw error;showStatus('authMessage','Si existe una cuenta con ese correo, recibirás instrucciones para recuperar el acceso.','success');}catch(e){showStatus('authMessage',dataError(e));}}
+  async function completePasswordReset(event){event.preventDefault();clearStatus('authMessage');try{assertBetaWritable();}catch(e){return showStatus('authMessage',dataError(e));}const p=$('newPassword').value,confirmP=$('newPasswordAgain').value;if(p.length<10||p!==confirmP)return showStatus('authMessage','Las contraseñas deben coincidir y contener al menos 10 caracteres.');try{const {error}=await sb.auth.updateUser({password:p});if(error)throw error;$('resetCompleteForm').reset();state.recovery=false;setAuthMode('login');notify('Contraseña actualizada.');await checkSession();}catch(e){showStatus('authMessage',dataError(e));}}
+  async function bootstrapUser(user){if(!user||state.recovery)return;const changed=state.user?.id!==user.id;if(changed){state.loadSerial++;state.transactions=[];state.cards=[];state.secrets=[];state.loaded=false;state.loading=false;state.user=user;resetSensitive();}else state.user=user;
+    showApp();if(changed||!state.loaded)await refreshData();if(quickType&&!state.quickConsumed&&!state.loading){state.quickConsumed=true;openTransaction(quickType);const url=new URL(location.href);url.searchParams.delete('quick');history.replaceState(null,'',url.pathname+url.search+url.hash);}
+  }
+  async function checkSession(){try{const {data:{session},error}=await sb.auth.getSession();if(error||!session){showAuth();return;}const {data,error:ue}=await sb.auth.getUser();if(ue||!data.user){showAuth();return;}await bootstrapUser(data.user);}catch(e){showAuth();showStatus('authMessage','No se pudo comprobar la sesión. Verifica internet e inténtalo de nuevo.');}}
+  function onNetworkChange(){$('offlineBanner').hidden=navigator.onLine;if(navigator.onLine&&state.user)notify('Conexión restablecida. Puedes volver a guardar.');}
+  function bind(){
+    $('tabLogin').addEventListener('click',()=>setAuthMode('login'));$('tabRegister').addEventListener('click',()=>setAuthMode('register'));
+    $('forgotButton').addEventListener('click',()=>{setAuthMode('forgot');$('resetEmail').value=$('authEmail').value;});$('backLogin').addEventListener('click',()=>setAuthMode('login'));
+    $('authForm').addEventListener('submit',handleAuth);$('resetRequestForm').addEventListener('submit',requestPasswordReset);$('resetCompleteForm').addEventListener('submit',completePasswordReset);
+    $('logoutButton').addEventListener('click',async()=>{try{const {error}=await sb.auth.signOut({scope:'local'});if(error)throw error;showAuth();setAuthMode('login');notify('Sesión cerrada.');}catch(e){notify(dataError(e),'error');}});
+    document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+    $('copyExpenseShortcut').addEventListener('click',()=>copyShortcut('expense'));$('copyIncomeShortcut').addEventListener('click',()=>copyShortcut('income'));$('retryLoad').addEventListener('click',()=>refreshData());
+    $('monthFilter').addEventListener('change',e=>{if(/^\d{4}-(0[1-9]|1[0-2])$/.test(e.target.value)){state.month=e.target.value;render();}});
+    $('incomeTopButton').addEventListener('click',()=>openTransaction('income'));$('expenseTopButton').addEventListener('click',()=>openTransaction('expense'));
+    for(const id of ['heroQuick','addTransactionButton','fabButton'])$(id).addEventListener('click',()=>openDialog('chooseDialog'));
+    $('chooseIncome').addEventListener('click',()=>{closeDialog('chooseDialog');openTransaction('income');});$('chooseExpense').addEventListener('click',()=>{closeDialog('chooseDialog');openTransaction('expense');});
+    document.querySelectorAll('[data-close-dialog]').forEach(b=>b.addEventListener('click',()=>b.closest('dialog').close()));
+    $('txType').addEventListener('change',()=>{buildCategories($('txType').value);$('txModalTitle').textContent=$('txId').value?'Editar movimiento':$('txType').value==='income'?'Registrar ingreso':'Registrar gasto';});$('txCard').addEventListener('change',methodForCard);
+    $('transactionForm').addEventListener('submit',saveTransaction);$('cardForm').addEventListener('submit',saveCard);$('addCardButton').addEventListener('click',()=>openCard());$('cardType').addEventListener('change',cardTypeUi);
+    $('txSearch').addEventListener('input',e=>{state.filters.search=e.target.value;renderTransactions();});$('txTypeFilter').addEventListener('change',e=>{state.filters.type=e.target.value;renderTransactions();});$('txCardFilter').addEventListener('change',e=>{state.filters.card=e.target.value;renderTransactions();});
+    $('vaultUnlockForm').addEventListener('submit',unlockVault);$('vaultEditForm').addEventListener('submit',saveVault);$('vaultCopy').addEventListener('click',copyVault);$('vaultHide').addEventListener('click',()=>lockVault());$('vaultEditButton').addEventListener('click',editVault);
+    for(const id of ['vaultDialog','transactionDialog','cardDialog','chooseDialog'])$(id).addEventListener('close',()=>{if(id==='vaultDialog'){resetSensitive();$('vaultEditForm').reset();state.vaultCardId=null;}if(id==='transactionDialog'&&!state.saving){state.pendingNewId=null;}});
+    document.addEventListener('visibilitychange',()=>{if(document.hidden)lockVault();});window.addEventListener('pagehide',()=>resetSensitive());window.addEventListener('offline',onNetworkChange);window.addEventListener('online',onNetworkChange);
+    for(const ev of ['pointerdown','keydown','touchstart'])document.addEventListener(ev,()=>{state.lastActivity=Date.now();},{passive:true});
+    setInterval(()=>{if(state.vaultUnlocked&&Date.now()-state.lastActivity>45000)lockVault();},5000);
+  }
+  bind();
+  $('tabRegister').hidden=true;
+  $('forgotButton').hidden=true;
+  onNetworkChange();
+  sb.auth.onAuthStateChange((event,session)=>{
+    // No realizar llamadas async a Auth dentro del callback: evitar bloqueos internos.
+    if(event==='PASSWORD_RECOVERY'){state.recovery=true;queueMicrotask(()=>{$('appShell').hidden=true;$('authScreen').hidden=false;setAuthMode('recover');});return;}
+    if(event==='SIGNED_OUT')queueMicrotask(()=>{state.recovery=false;showAuth();setAuthMode('login');});
+    if(event==='SIGNED_IN'&&session?.user&&state.authMode!=='recover')queueMicrotask(()=>bootstrapUser(session.user));
+  });
+  checkSession();
+  </script>
+</body>
+</html>
