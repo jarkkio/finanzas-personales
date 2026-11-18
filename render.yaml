@@ -1,0 +1,24 @@
+# Sitio estatico Render: sin bases de datos ni servicios de pago.
+services:
+  - type: web
+    name: finanzas-personales
+    runtime: static
+    buildCommand: echo "Publicando HTML estatico"
+    staticPublishPath: ./public
+    autoDeployTrigger: commit
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: no-referrer
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: Cache-Control
+        value: no-store
+      - path: /beta/*
+        name: X-Robots-Tag
+        value: noindex, nofollow
